@@ -51,7 +51,7 @@ void		close_pipe0(int **pfd, int n);
 void		close_pipe(int ind, int **pfd, int n);
 void		close_all_pipe(int **pfd, int n);
 
-//pipe_info
+//pipe_infoo
 
 int			ini_pid(pid_t **pid, int argc);
 int			**ini_pipes(int n);
