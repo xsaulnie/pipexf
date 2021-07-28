@@ -17,6 +17,7 @@ void	clean_del(int **tab, int n)
 	{
 		free(tab[i]);
 		tab[i] = NULL;
+		i++;
 	}
 	free(tab);
 	tab = NULL;

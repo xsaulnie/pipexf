@@ -50,7 +50,6 @@ void	del_cmd(t_command *cmd_info, int mod)
 void	del_inf(t_pipe *inf)
 {
 	close_all_pipe(inf->pfd, inf->argc - 3);
-	inf->argc = 0;
 	if (inf->pfd != NULL)
 		del_dtabi(inf->pfd, inf->argc - 3);
 	if (inf->pid != NULL)

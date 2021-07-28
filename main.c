@@ -6,6 +6,7 @@ int	main(int argc, char *argv[], char *menv[])
 	int		status;
 	int		last_ret;
 
+	status = 0;
 	last_ret = 1;
 	if (argc < 5)
 		return (1);

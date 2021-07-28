@@ -7,7 +7,7 @@
 # include <fcntl.h>
 # include "libft/libft.h"
 
-struct	s_pipe
+typedef struct	s_pipe
 {
 	int		argc;
 	int		**pfd;
@@ -15,7 +15,7 @@ struct	s_pipe
 	int		err;
 }	t_pipe;
 
-struct	s_command
+typedef struct	s_command
 {
 	char	**argv_cmd;
 	char	**cmd_list;

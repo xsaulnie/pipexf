@@ -50,9 +50,14 @@ char	*check_cmd(char *name, char **cmd_list, int *not_found)
 	if (slash_name == NULL)
 		 return (NULL);
 	res = check_list(cmd_list, slash_name, not_found);
-	ft_del(&slash_name);
 	if (res == NULL)
+		return (NULL);
+	ft_del(&slash_name);
+	if (res[0] == '\0')
+	{
+		ft_del(&res);
 		 return (NULL);
+	}
 	if (*not_found)
 		 return (ft_emptystr());
 	else

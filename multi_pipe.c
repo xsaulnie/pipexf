@@ -67,16 +67,9 @@ int	cmd_last(t_pipe *inf, char *argv[], char *menv[])
 
 int	mpipex(t_pipe *inf, char *argv[], char *menv[])
 {
-	if (cmd_ini(inf, argv, menv))
-	{
-		del_inf(inf);
-		return (1);
-	}
+	cmd_ini(inf, argv, menv);
 	multy_pipe(inf, argv, menv);
-	if (cmd_last(inf, argv, menv))
-	{
-		del_inf(inf);
-		return (1);
-	}
+	cmd_last(inf, argv, menv);
+
 	return (0);
 }

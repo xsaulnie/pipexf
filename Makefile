@@ -11,7 +11,7 @@ all: ${NAME}
 Libft: 
 	make -C libft
 .c.o:
-	$(CC) $(CFLAGS) -c $< -o ${<:.c=.o}
+	$(CC) $(CFLAGS) -g -c $< -o ${<:.c=.o}
 
 ${NAME}: Libft $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) libft/libft.a -o $(NAME)
