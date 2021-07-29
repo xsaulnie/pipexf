@@ -82,11 +82,11 @@ int	cmd_last(t_pipe *inf, char *argv[], char *menv[])
 
 int	mpipex(t_pipe *inf, char *argv[], char *menv[])
 {
-    if (cmd_ini(inf, argv, menv) == 1)
-        inf->file_err = 1;
+	if (cmd_ini(inf, argv, menv) == 1)
+		inf->file_err = 1;
 	if (multy_pipe(inf, argv, menv) == 1)
-        inf->file_err = 1;
-    if (cmd_last(inf, argv, menv) == 1)
-        inf->file_err = 1;
+		inf->file_err = 1;
+	if (cmd_last(inf, argv, menv) == 1)
+		inf->file_err = 1;
 	return (0);
 }

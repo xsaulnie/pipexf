@@ -34,10 +34,10 @@ int	main(int argc, char *argv[], char *menv[])
 		last_ret = WEXITSTATUS(status);
 	wait_cmd(argc - 4, &status);
 
-    if (inf->file_err)
-        last_ret = 1;
-    if (inf->err)
-        last_ret = 127;
+	if (inf->file_err)
+		last_ret = 1;
+	if (inf->err)
+		last_ret = 127;
 	del_inf(inf);
 	return (last_ret);
 }

@@ -66,7 +66,10 @@ char	*check_cmd(char *name, char **cmd_list, int *not_found)
 		return (NULL);
 	ft_del(&slash_name);
 	if (*not_found)
-		 return (ft_emptystr());
+	{
+		ft_del(&res);
+		return (ft_emptystr());
+	}
 	else
 		 return (res);
 }
