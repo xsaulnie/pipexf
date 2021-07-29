@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   command_info.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: xsaulnie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/28 16:02:22 by xsaulnie          #+#    #+#             */
+/*   Updated: 2021/07/28 16:02:24 by xsaulnie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 int	ini_cmd_list(char ***cmd_list, char *env[])
@@ -53,11 +65,6 @@ char	*check_cmd(char *name, char **cmd_list, int *not_found)
 	if (res == NULL)
 		return (NULL);
 	ft_del(&slash_name);
-	if (res[0] == '\0')
-	{
-		ft_del(&res);
-		 return (NULL);
-	}
 	if (*not_found)
 		 return (ft_emptystr());
 	else

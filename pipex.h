@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: xsaulnie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/28 16:05:10 by xsaulnie          #+#    #+#             */
+/*   Updated: 2021/07/28 16:05:16 by xsaulnie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PIPEX_H
 # define PIPEX_H
 # include <stdio.h>
@@ -7,15 +19,16 @@
 # include <fcntl.h>
 # include "libft/libft.h"
 
-typedef struct	s_pipe
+typedef struct s_pipe
 {
 	int		argc;
 	int		**pfd;
 	pid_t	*pid;
 	int		err;
+    int     file_err;
 }	t_pipe;
 
-typedef struct	s_command
+typedef struct s_command
 {
 	char	**argv_cmd;
 	char	**cmd_list;
@@ -26,7 +39,7 @@ typedef struct	s_command
 //multi-pipe
 
 int			cmd_ini(t_pipe *inf, char *argv[], char *menv[]);
-void		multy_pipe(t_pipe *inf, char *argv[], char *menv[]);
+int		multy_pipe(t_pipe *inf, char *argv[], char *menv[]);
 int			cmd_last(t_pipe *inf, char *argv[], char *menv[]);
 int			mpipex(t_pipe *inf, char *argv[], char *menv[]);
 

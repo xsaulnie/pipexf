@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   multi_pipe.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: xsaulnie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/28 16:03:02 by xsaulnie          #+#    #+#             */
+/*   Updated: 2021/07/28 16:06:41 by xsaulnie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 int	cmd_ini(t_pipe *inf, char *argv[], char *menv[])
@@ -15,12 +27,13 @@ int	cmd_ini(t_pipe *inf, char *argv[], char *menv[])
 		close(fi);
 		dup2((inf->pfd)[0][1], 1);
 		close((inf->pfd)[0][1]);
-		run_cmd(argv[2], menv, &(inf->err));
+        if (run_cmd(argv[2], menv, &(inf->err)))
+            return (1);
 	}
 	return (0);
 }
 
-void	multy_pipe(t_pipe *inf, char *argv[], char *menv[])
+int multy_pipe(t_pipe *inf, char *argv[], char *menv[])
 {
 	int	i;
 	int	n;
@@ -37,11 +50,12 @@ void	multy_pipe(t_pipe *inf, char *argv[], char *menv[])
 			close((inf->pfd)[i - 1][0]);
 			dup2((inf->pfd)[i][1], 1);
 			close((inf->pfd)[i][1]);
-			run_cmd(argv[i + 2], menv, &(inf->err));
+			if (run_cmd(argv[i + 2], menv, &(inf->err)))
+                return (1);
 		}
 		i++;
 	}
-	return ;
+    return (0);
 }
 
 int	cmd_last(t_pipe *inf, char *argv[], char *menv[])
@@ -60,16 +74,19 @@ int	cmd_last(t_pipe *inf, char *argv[], char *menv[])
 		close(fo);
 		dup2((inf->pfd)[inf->argc - 5][0], 0);
 		close((inf->pfd)[inf->argc - 5][0]);
-		run_cmd(argv[inf->argc - 2], menv, &(inf->err));
+		if (run_cmd(argv[inf->argc - 2], menv, &(inf->err)))
+            return (2);
 	}
 	return (0);
 }
 
 int	mpipex(t_pipe *inf, char *argv[], char *menv[])
 {
-	cmd_ini(inf, argv, menv);
-	multy_pipe(inf, argv, menv);
-	cmd_last(inf, argv, menv);
-
+    if (cmd_ini(inf, argv, menv) == 1)
+        inf->file_err = 1;
+	if (multy_pipe(inf, argv, menv) == 1)
+        inf->file_err = 1;
+    if (cmd_last(inf, argv, menv) == 1)
+        inf->file_err = 1;
 	return (0);
 }

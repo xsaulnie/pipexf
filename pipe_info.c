@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipe_info.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: xsaulnie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/28 16:03:15 by xsaulnie          #+#    #+#             */
+/*   Updated: 2021/07/28 16:04:08 by xsaulnie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 int	ini_pid(pid_t **pid, int argc)
@@ -69,6 +81,7 @@ t_pipe	*pipe_info(int argc)
 		return (NULL);
 	}
 	res->err = 0;
+    res->file_err = 0;
 	return (res);
 }
 
@@ -91,6 +104,7 @@ t_command	*read_command(char *arg_cmd, char *env[])
 		del_cmd(res, 1);
 		return (NULL);
 	}
+
 	res->cmd = check_cmd((res->argv_cmd)[0], res->cmd_list, &(res->not_found));
 	if (res->cmd == NULL)
 	{
