@@ -6,7 +6,7 @@
 /*   By: xsaulnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 16:03:02 by xsaulnie          #+#    #+#             */
-/*   Updated: 2021/07/28 16:06:41 by xsaulnie         ###   ########.fr       */
+/*   Updated: 2021/07/29 11:41:50 by xsaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ int	cmd_ini(t_pipe *inf, char *argv[], char *menv[])
 		close(fi);
 		dup2((inf->pfd)[0][1], 1);
 		close((inf->pfd)[0][1]);
-        if (run_cmd(argv[2], menv, &(inf->err)))
-            return (1);
+		if (run_cmd(argv[2], menv, &(inf->err)))
+			return (1);
 	}
 	return (0);
 }
 
-int multy_pipe(t_pipe *inf, char *argv[], char *menv[])
+int	multy_pipe(t_pipe *inf, char *argv[], char *menv[])
 {
 	int	i;
 	int	n;
@@ -51,11 +51,11 @@ int multy_pipe(t_pipe *inf, char *argv[], char *menv[])
 			dup2((inf->pfd)[i][1], 1);
 			close((inf->pfd)[i][1]);
 			if (run_cmd(argv[i + 2], menv, &(inf->err)))
-                return (1);
+				return (1);
 		}
 		i++;
 	}
-    return (0);
+	return (0);
 }
 
 int	cmd_last(t_pipe *inf, char *argv[], char *menv[])
@@ -75,7 +75,7 @@ int	cmd_last(t_pipe *inf, char *argv[], char *menv[])
 		dup2((inf->pfd)[inf->argc - 5][0], 0);
 		close((inf->pfd)[inf->argc - 5][0]);
 		if (run_cmd(argv[inf->argc - 2], menv, &(inf->err)))
-            return (2);
+			return (2);
 	}
 	return (0);
 }

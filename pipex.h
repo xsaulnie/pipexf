@@ -6,7 +6,7 @@
 /*   By: xsaulnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 16:05:10 by xsaulnie          #+#    #+#             */
-/*   Updated: 2021/07/28 16:05:16 by xsaulnie         ###   ########.fr       */
+/*   Updated: 2021/07/29 11:49:03 by xsaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_pipe
 	int		**pfd;
 	pid_t	*pid;
 	int		err;
-    int     file_err;
+	int		file_err;
 }	t_pipe;
 
 typedef struct s_command
@@ -39,7 +39,7 @@ typedef struct s_command
 //multi-pipe
 
 int			cmd_ini(t_pipe *inf, char *argv[], char *menv[]);
-int		multy_pipe(t_pipe *inf, char *argv[], char *menv[]);
+int			multy_pipe(t_pipe *inf, char *argv[], char *menv[]);
 int			cmd_last(t_pipe *inf, char *argv[], char *menv[]);
 int			mpipex(t_pipe *inf, char *argv[], char *menv[]);
 
@@ -49,6 +49,7 @@ void		wait_cmd(int n, int *status);
 void		create_pipes(int n, int **pfd);
 void		put_err_message(char *env[], char *msg, char *name);
 void		put_shell_type(char *env[]);
+int			wait_all_proc(t_pipe *inf);
 
 //del
 

@@ -6,7 +6,7 @@
 /*   By: xsaulnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 16:05:32 by xsaulnie          #+#    #+#             */
-/*   Updated: 2021/07/28 16:05:33 by xsaulnie         ###   ########.fr       */
+/*   Updated: 2021/07/29 11:48:37 by xsaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,22 @@ void	put_shell_type(char *env[])
 		i++;
 	}
 	return ;
+}
+
+int	wait_all_proc(t_pipe *inf)
+{
+	int	status;
+	int	res;
+
+	res = 1;
+	status = 0;
+	waitpid((inf->pid)[inf->argc - 4], &status, WUNTRACED);
+	if (WIFEXITED(status))
+		res = WEXITSTATUS(status);
+	wait_cmd(inf->argc - 4, &status);
+	if (inf->file_err)
+		res = 1;
+	if (inf->err)
+		res = 127;
+	return (res);
 }

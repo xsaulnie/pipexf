@@ -6,7 +6,7 @@
 /*   By: xsaulnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/28 16:02:39 by xsaulnie          #+#    #+#             */
-/*   Updated: 2021/07/28 16:05:43 by xsaulnie         ###   ########.fr       */
+/*   Updated: 2021/07/29 11:27:18 by xsaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,9 @@ void	del_cmd(t_command *cmd_info, int mod)
 		del_dtab(cmd_info->cmd_list);
 	if (cmd_info->cmd != NULL && mod >= 3)
 		ft_del(&(cmd_info->cmd));
-    cmd_info->not_found = 0;
+	cmd_info->not_found = 0;
 	if (cmd_info != NULL)
 		ft_del_cmd(cmd_info);
-
 }
 
 void	del_inf(t_pipe *inf)
@@ -72,7 +71,7 @@ void	del_inf(t_pipe *inf)
 		inf->pid = NULL;
 	}
 	inf->err = 0;
-    inf->file_err = 0;
+	inf->file_err = 0;
 	if (inf != NULL)
 	{
 		free(inf);
